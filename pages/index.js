@@ -6,7 +6,12 @@ import { Box, Button, Text, TextField, Image } from "@skynexui/components";
 export default function PaginaInicial() {
   const [user, setUser] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [photo, setPhoto] = React.useState("");
   const roteamento = useRouter();
+
+  React.useEffect(() => {
+    setPhoto(`/images/${user}.jpeg`);
+  }, [user]);
   return (
     <>
       <Box
@@ -144,9 +149,9 @@ export default function PaginaInicial() {
           >
             <Image
               styleSheet={{
-                borderRadius: "50%",
+                borderRadius: '50vh'
               }}
-              src={`https://filestore.community.support.microsoft.com/api/images/6061bd47-2818-4f2b-b04a-5a9ddb6f6467?upload=true.jpg`}
+              src={`${photo}`}
             />
           </Box>
         </Box>
