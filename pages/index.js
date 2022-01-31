@@ -43,8 +43,9 @@ export default function PaginaInicial() {
             onSubmit={(e) => {
               e.preventDefault();
               if (
-                (user == "victor" && password == "123") ||
-                (user == "Everton" && password == "123")
+                (user == "Victor" && password == "123") ||
+                (user == "Everton" && password == "123") ||
+                (user == "Igor" && password == "123")
               ) {
                 roteamento.push({ pathname: "/discente", query: { user } });
               } else if (user == "tassio" && password == "admin") {
