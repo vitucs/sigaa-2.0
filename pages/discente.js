@@ -140,6 +140,7 @@ function Forum(props) {
           flexDirection: "column-reverse",
           height: "200px",
           padding: "20px",
+          scrollbarWidth: 'thin'
         }}
       >
         {listaDeMensagens.map((mensagem) => {
@@ -255,7 +256,7 @@ function Turmas(props) {
           color: "white",
           minHeight:'300px',
           overflow: "scroll",
-
+          scrollbarWidth: 'thin'
         }}
       >
         <table style={{ width: "100%" }}>
@@ -269,6 +270,7 @@ function Turmas(props) {
               justifyContent: "space-between",
               fontSize: "24px",
               fontWeight: "bold",
+              
             }}
           >
             <td style={{ width: "300px", textAlign: "left" }}>Disciplina</td>

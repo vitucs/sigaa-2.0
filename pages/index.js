@@ -53,8 +53,8 @@ export default function PaginaInicial() {
                 (user == "Igor" && password == "123")
               ) {
                 roteamento.push({ pathname: "/discente", query: { user } });
-              } else if (user == "tassio" && password == "admin") {
-                roteamento.push("/docente");
+              } else if (user == "Tassio" && password == "admin") {
+                roteamento.push({ pathname: "/docente", query: { user } });
               }
             }}
             styleSheet={{

@@ -11,7 +11,11 @@ const SUPABASE_URL = "https://ehnbnwojkxxmvweivtmp.supabase.co";
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-export default function Docente() {
+Docente.getInitialProps = ({ query: { user } }) => {
+  return { user }
+}
+
+export default function Docente({user}) {
   const [username, setUsername] = React.useState("");
 
   /*supabase
@@ -67,13 +71,13 @@ export default function Docente() {
           >
             <Box styleSheet={{ width: "80%" }}>
               <Menu />
-              <Turmas username={username} setUsername={setUsername} />
+              <Turmas username={user} setUsername={setUsername} />
             </Box>
             <Box>
-              <Usuario username={username} setUsername={setUsername} />
+              <Usuario username={user} setUsername={setUsername} />
             </Box>
           </Box>
-          <Forum username={username} setUsername={setUsername} />
+          <Forum username={user} setUsername={setUsername} />
         </Box>
       </Box>
     </>
@@ -192,7 +196,7 @@ function Turmas(props) {
     supabase
       .from("disciplinas")
       .select("*")
-      .eq("aluno", `${props.username}`)
+      .eq("professor", `${props.username}`)
       .then(({ data }) => {
         setTurmas(data);
       });
@@ -332,7 +336,7 @@ function Menu() {
 }
 
 function Usuario(props) {
-  const [aluno, setAluno] = React.useState(['']);
+  const [professor, setProfessor] = React.useState(['']);
 
   React.useEffect(() => {
     supabase
@@ -340,7 +344,7 @@ function Usuario(props) {
       .select("*")
       .eq("nome", `${props.username}`)
       .then(({ data }) => {
-        setAluno(data[0]);
+        setProfessor(data[0]);
       });
   }, []);
 
@@ -373,13 +377,13 @@ function Usuario(props) {
           />
           <Box styleSheet={{color:'white', display: 'flex', justifyContent: 'space-around', flexDirection: 'column', height: '330px', width: '300px'}}>
             <Text styleSheet={{fontSize:'22px', fontWeight:'bold'}}>Matrícula: </Text>
-            <Text>{aluno.matricula}</Text>
-            <Text styleSheet={{fontSize:'22px', fontWeight:'bold'}}>Curso: </Text>
-            <Text>{aluno.curso}</Text>
+            <Text>{professor.matricula}</Text>
+            <Text styleSheet={{fontSize:'22px', fontWeight:'bold'}}>Curso Ministrado: </Text>
+            <Text>{professor.curso}</Text>
             <Text styleSheet={{fontSize:'22px', fontWeight:'bold'}}>Status: </Text>
-            <Text>{aluno.statusAluno}</Text>
+            <Text>{professor.statusAluno}</Text>
             <Text styleSheet={{fontSize:'22px', fontWeight:'bold'}}>Email: </Text>
-            <Text>{aluno.email}</Text>
+            <Text>{professor.email}</Text>
           </Box>
         </Box>
       </Box>
