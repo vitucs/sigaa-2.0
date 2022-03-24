@@ -142,6 +142,7 @@ function Forum(props) {
           padding: "20px",
           scrollbarWidth: 'thin'
         }}
+        
       >
         {listaDeMensagens.map((mensagem) => {
           return (
